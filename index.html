@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Formulaire de commande</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
   <style>
     /* =============================================
        VARIABLES & RESET
     ============================================= */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
-      --bg:        #F5F2EC;
-      --surface:   #FFFFFF;
-      --ink:       #1A1A18;
-      --muted:     #7A7870;
-      --accent:    #2D5BE3;
+      --bg: #F5F2EC;
+      --surface: #FFFFFF;
+      --ink: #1A1A18;
+      --muted: #7A7870;
+      --accent: #2D5BE3;
       --accent-lt: #EBF0FD;
-      --success:   #1A7A4A;
-      --success-lt:#E6F5EE;
-      --error:     #C0392B;
-      --error-lt:  #FDECEA;
-      --border:    #E0DDD6;
-      --radius:    12px;
-      --shadow:    0 2px 24px rgba(0,0,0,0.07);
+      --success: #1A7A4A;
+      --success-lt: #E6F5EE;
+      --error: #C0392B;
+      --error-lt: #FDECEA;
+      --border: #E0DDD6;
+      --radius: 12px;
+      --shadow: 0 2px 24px rgba(0, 0, 0, 0.07);
     }
 
     body {
@@ -48,8 +56,15 @@
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .header {
@@ -107,7 +122,9 @@
       gap: 6px;
     }
 
-    .field.full { grid-column: 1 / -1; }
+    .field.full {
+      grid-column: 1 / -1;
+    }
 
     label {
       font-size: 12px;
@@ -116,7 +133,8 @@
       letter-spacing: 0.04em;
     }
 
-    input, select {
+    input,
+    select {
       font-family: 'DM Sans', sans-serif;
       font-size: 14px;
       color: var(--ink);
@@ -130,23 +148,30 @@
       appearance: none;
     }
 
-    input:focus, select:focus {
+    input:focus,
+    select:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(45,91,227,0.12);
+      box-shadow: 0 0 0 3px rgba(45, 91, 227, 0.12);
       background: #fff;
     }
 
-    input::placeholder { color: #C0BDB6; }
+    input::placeholder {
+      color: #C0BDB6;
+    }
 
     /* Custom select arrow */
-    .select-wrap { position: relative; }
+    .select-wrap {
+      position: relative;
+    }
+
     .select-wrap::after {
       content: '';
       position: absolute;
       right: 14px;
       top: 50%;
       transform: translateY(-50%);
-      width: 0; height: 0;
+      width: 0;
+      height: 0;
       border-left: 4px solid transparent;
       border-right: 4px solid transparent;
       border-top: 5px solid var(--muted);
@@ -184,23 +209,43 @@
       margin-top: 4px;
     }
 
-    .btn-submit:hover  { background: #2348C8; }
-    .btn-submit:active { transform: scale(0.98); }
-    .btn-submit:disabled { background: #9BAEE8; cursor: not-allowed; transform: none; }
+    .btn-submit:hover {
+      background: #2348C8;
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    .btn-submit:disabled {
+      background: #9BAEE8;
+      cursor: not-allowed;
+      transform: none;
+    }
 
     .btn-submit .spinner {
-      width: 16px; height: 16px;
-      border: 2px solid rgba(255,255,255,0.4);
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
       border-top-color: #fff;
       border-radius: 50%;
       animation: spin 0.7s linear infinite;
       display: none;
     }
 
-    .btn-submit.loading .spinner { display: block; }
-    .btn-submit.loading .btn-text { opacity: 0.7; }
+    .btn-submit.loading .spinner {
+      display: block;
+    }
 
-    @keyframes spin { to { transform: rotate(360deg); } }
+    .btn-submit.loading .btn-text {
+      opacity: 0.7;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
     /* =============================================
        ALERTS
@@ -217,7 +262,9 @@
       animation: fadeUp 0.3s ease both;
     }
 
-    .alert.show { display: flex; }
+    .alert.show {
+      display: flex;
+    }
 
     .alert-success {
       background: var(--success-lt);
@@ -231,7 +278,11 @@
       border: 1px solid #F5C6C2;
     }
 
-    .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .alert-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
 
     /* =============================================
        ID BADGE
@@ -247,8 +298,14 @@
       color: var(--accent);
       margin-top: 10px;
     }
-    .id-badge.show { display: flex; }
-    .id-badge strong { font-weight: 500; }
+
+    .id-badge.show {
+      display: flex;
+    }
+
+    .id-badge strong {
+      font-weight: 500;
+    }
 
     /* =============================================
        FOOTER
@@ -261,183 +318,185 @@
     }
   </style>
 </head>
+
 <body>
 
-<div class="page">
+  <div class="page">
 
-  <div class="header">
-    <span class="label">Gestion des commandes</span>
-    <h1>Nouvelle commande</h1>
-    <p>Remplissez le formulaire ci-dessous. Les données seront automatiquement transmises et enregistrées.</p>
-  </div>
+    <div class="header">
+      <span class="label">Gestion des commandes</span>
+      <h1>Nouvelle commande</h1>
+      <p>Remplissez le formulaire ci-dessous. Les données seront automatiquement transmises et enregistrées.</p>
+    </div>
 
-  <div class="card">
-    <form id="orderForm" novalidate>
-      <div class="form-grid">
+    <div class="card">
+      <form id="orderForm" novalidate>
+        <div class="form-grid">
 
-        <!-- Infos client -->
-        <div class="field">
-          <label for="nom">Nom complet</label>
-          <input id="nom" name="nom" type="text" placeholder="ex. Alice Martin" required />
-        </div>
-
-        <div class="field">
-          <label for="email">Adresse e-mail</label>
-          <input id="email" name="email" type="email" placeholder="alice@exemple.com" required />
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- Détails commande -->
-        <div class="field full">
-          <label for="produit">Produit commandé</label>
-          <input id="produit" name="produit" type="text" placeholder="ex. Abonnement Pro" required />
-        </div>
-
-        <div class="field">
-          <label for="quantite">Quantité</label>
-          <input id="quantite" name="quantite" type="number" min="1" value="1" required />
-        </div>
-
-        <div class="field">
-          <label for="montant">Montant (FCFA)</label>
-          <input id="montant" name="montant" type="number" min="0" placeholder="0" required />
-        </div>
-
-        <div class="field full">
-          <label for="statut">Statut</label>
-          <div class="select-wrap">
-            <select id="statut" name="statut">
-              <option value="Nouveau">Nouveau</option>
-              <option value="En cours">En cours</option>
-              <option value="Confirmé">Confirmé</option>
-            </select>
+          <!-- Infos client -->
+          <div class="field">
+            <label for="nom">Nom complet</label>
+            <input id="nom" name="nom" type="text" placeholder="ex. Alice Martin" required />
           </div>
+
+          <div class="field">
+            <label for="email">Adresse e-mail</label>
+            <input id="email" name="email" type="email" placeholder="alice@exemple.com" required />
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Détails commande -->
+          <div class="field full">
+            <label for="produit">Produit commandé</label>
+            <input id="produit" name="produit" type="text" placeholder="ex. Abonnement Pro" required />
+          </div>
+
+          <div class="field">
+            <label for="quantite">Quantité</label>
+            <input id="quantite" name="quantite" type="number" min="1" value="1" required />
+          </div>
+
+          <div class="field">
+            <label for="montant">Montant (FCFA)</label>
+            <input id="montant" name="montant" type="number" min="0" placeholder="0" required />
+          </div>
+
+          <div class="field full">
+            <label for="statut">Statut</label>
+            <div class="select-wrap">
+              <select id="statut" name="statut">
+                <option value="Nouveau">Nouveau</option>
+                <option value="En cours">En cours</option>
+                <option value="Confirmé">Confirmé</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Bouton -->
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <div class="spinner"></div>
+            <span class="btn-text">Envoyer la commande</span>
+          </button>
+
+        </div><!-- /.form-grid -->
+      </form>
+
+      <!-- Feedback messages -->
+      <div class="alert alert-success" id="alertSuccess">
+        <span class="alert-icon">✓</span>
+        <div>
+          <strong>Commande enregistrée avec succès !</strong><br />
+          Les données ont bien été transmises et seront disponibles dans Google Sheets.
         </div>
-
-        <!-- Bouton -->
-        <button type="submit" class="btn-submit" id="submitBtn">
-          <div class="spinner"></div>
-          <span class="btn-text">Envoyer la commande</span>
-        </button>
-
-      </div><!-- /.form-grid -->
-    </form>
-
-    <!-- Feedback messages -->
-    <div class="alert alert-success" id="alertSuccess">
-      <span class="alert-icon">✓</span>
-      <div>
-        <strong>Commande enregistrée avec succès !</strong><br/>
-        Les données ont bien été transmises et seront disponibles dans Google Sheets.
       </div>
-    </div>
 
-    <div class="alert alert-error" id="alertError">
-      <span class="alert-icon">✕</span>
-      <div id="alertErrorMsg">Une erreur est survenue. Vérifiez votre connexion et réessayez.</div>
-    </div>
+      <div class="alert alert-error" id="alertError">
+        <span class="alert-icon">✕</span>
+        <div id="alertErrorMsg">Une erreur est survenue. Vérifiez votre connexion et réessayez.</div>
+      </div>
 
-    <div class="id-badge" id="idBadge">
-      <span>🔖</span>
-      <span>ID Commande généré : <strong id="idValue"></strong></span>
-    </div>
+      <div class="id-badge" id="idBadge">
+        <span>🔖</span>
+        <span>ID Commande généré : <strong id="idValue"></strong></span>
+      </div>
 
-  </div><!-- /.card -->
+    </div><!-- /.card -->
 
-  <p class="footer">Données transmises via Make · Stockage Google Sheets</p>
+    <p class="footer">Données transmises via Make · Stockage Google Sheets</p>
 
-</div><!-- /.page -->
+  </div><!-- /.page -->
 
-<script>
-  /* ==============================================
-     ⚠️  COLLE TON URL WEBHOOK MAKE ICI ⚠️
-     Exemple : https://hook.eu1.make.com/abcdef123456
-  =============================================== */
-  const WEBHOOK_URL = "https://hook.eu1.make.com/rh2hfqm3wizttm0pte946w4qql12m8cr";
+  <script>
+    /* ==============================================
+       ⚠️  COLLE TON URL WEBHOOK MAKE ICI ⚠️
+       Exemple : https://hook.eu1.make.com/abcdef123456
+    =============================================== */
+    const WEBHOOK_URL = "https://hook.eu2.make.com/ba06mympwip237yj2wynfuockgr26ytb";
     /* ============================================= */
 
 
-  /* --- Génération ID unique ------------------- */
-  function generateOrderId() {
-    const now  = new Date();
-    const date = now.toISOString().slice(0,10).replace(/-/g,"");
-    const time = String(now.getHours()).padStart(2,"0")
-               + String(now.getMinutes()).padStart(2,"0")
-               + String(now.getSeconds()).padStart(2,"0");
-    const rand = Math.floor(1000 + Math.random() * 9000);
-    return `CMD-${date}-${time}-${rand}`;
-  }
-
-  /* --- Soumission du formulaire --------------- */
-  const form      = document.getElementById("orderForm");
-  const submitBtn = document.getElementById("submitBtn");
-  const alertOk   = document.getElementById("alertSuccess");
-  const alertErr  = document.getElementById("alertError");
-  const alertMsg  = document.getElementById("alertErrorMsg");
-  const idBadge   = document.getElementById("idBadge");
-  const idValue   = document.getElementById("idValue");
-
-  function resetAlerts() {
-    alertOk.classList.remove("show");
-    alertErr.classList.remove("show");
-    idBadge.classList.remove("show");
-  }
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    resetAlerts();
-
-    /* Vérification rapide */
-    if (WEBHOOK_URL === "COLLE_TON_URL_WEBHOOK_ICI") {
-      alertMsg.textContent = "⚠️ Tu n'as pas encore renseigné l'URL du webhook Make dans le fichier JS.";
-      alertErr.classList.add("show");
-      return;
+    /* --- Génération ID unique ------------------- */
+    function generateOrderId() {
+      const now = new Date();
+      const date = now.toISOString().slice(0, 10).replace(/-/g, "");
+      const time = String(now.getHours()).padStart(2, "0")
+        + String(now.getMinutes()).padStart(2, "0")
+        + String(now.getSeconds()).padStart(2, "0");
+      const rand = Math.floor(1000 + Math.random() * 9000);
+      return `CMD-${date}-${time}-${rand}`;
     }
 
-    /* UI → état chargement */
-    submitBtn.disabled = true;
-    submitBtn.classList.add("loading");
+    /* --- Soumission du formulaire --------------- */
+    const form = document.getElementById("orderForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const alertOk = document.getElementById("alertSuccess");
+    const alertErr = document.getElementById("alertError");
+    const alertMsg = document.getElementById("alertErrorMsg");
+    const idBadge = document.getElementById("idBadge");
+    const idValue = document.getElementById("idValue");
 
-    /* Collecte des données + ID généré */
-    const orderId = generateOrderId();
-    const payload = {
-      id_commande : orderId,
-      nom         : document.getElementById("nom").value.trim(),
-      email       : document.getElementById("email").value.trim(),
-      produit     : document.getElementById("produit").value.trim(),
-      quantite    : parseInt(document.getElementById("quantite").value),
-      montant     : parseFloat(document.getElementById("montant").value),
-      statut      : document.getElementById("statut").value,
-      date_envoi  : new Date().toISOString(),
-    };
-
-    try {
-      const res = await fetch(WEBHOOK_URL, {
-        method  : "POST",
-        headers : { "Content-Type": "application/json" },
-        body    : JSON.stringify(payload),
-      });
-
-      if (!res.ok) throw new Error(`Serveur : ${res.status}`);
-
-      /* Succès */
-      form.reset();
-      document.getElementById("quantite").value = "1";
-      alertOk.classList.add("show");
-      idValue.textContent = C;
-      idBadge.classList.add("show");
-
-    } catch (err) {
-      alertMsg.textContent = `Erreur : ${err.message}. Vérifiez l'URL du webhook et réessayez.`;
-      alertErr.classList.add("show");
-
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.classList.remove("loading");
+    function resetAlerts() {
+      alertOk.classList.remove("show");
+      alertErr.classList.remove("show");
+      idBadge.classList.remove("show");
     }
-  });
-</script>
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      resetAlerts();
+
+      /* Vérification rapide */
+      if (WEBHOOK_URL === "COLLE_TON_URL_WEBHOOK_ICI") {
+        alertMsg.textContent = "⚠️ Tu n'as pas encore renseigné l'URL du webhook Make dans le fichier JS.";
+        alertErr.classList.add("show");
+        return;
+      }
+
+      /* UI → état chargement */
+      submitBtn.disabled = true;
+      submitBtn.classList.add("loading");
+
+      /* Collecte des données + ID généré */
+      const orderId = generateOrderId();
+      const payload = {
+        id_commande: orderId,
+        nom: document.getElementById("nom").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        produit: document.getElementById("produit").value.trim(),
+        quantite: parseInt(document.getElementById("quantite").value),
+        montant: parseFloat(document.getElementById("montant").value),
+        statut: document.getElementById("statut").value,
+        date_envoi: new Date().toISOString(),
+      };
+
+      try {
+        const res = await fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (!res.ok) throw new Error(`Serveur : ${res.status}`);
+
+        /* Succès */
+        form.reset();
+        document.getElementById("quantite").value = "1";
+        alertOk.classList.add("show");
+        idValue.textContent = C;
+        idBadge.classList.add("show");
+
+      } catch (err) {
+        alertMsg.textContent = `Erreur : ${err.message}. Vérifiez l'URL du webhook et réessayez.`;
+        alertErr.classList.add("show");
+
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove("loading");
+      }
+    });
+  </script>
 
 </body>
+
 </html>
